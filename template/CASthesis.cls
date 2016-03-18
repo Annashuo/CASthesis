@@ -54,15 +54,9 @@
    document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
-\newif\ifCAST@dvips \CAST@dvipsfalse
-\DeclareOption{dvips}{\CAST@dvipstrue}
-\DeclareOption{dvipdfm}{\CAST@dvipsfalse}
-\DeclareOption{pdftex}{\CAST@dvipsfalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessOptions
-\LoadClass[cs4size,a4paper,fancyhdr,fntef]{ctexbook}[2005/11/25]
-%% check pdfTeX mode
-\RequirePackage{ifpdf,ifxetex}
+\LoadClass[UTF8,zihao=-4,a4paper,fancyhdr]{ctexbook}[2005/11/25]
 %% math packages
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm}
 %% graphics packages
@@ -70,24 +64,8 @@
 %% sort and compress citations
 \RequirePackage[sort&compress,numbers]{natbib}
 %% packages and settings depend on PDF mode
-\ifxetex
-  \RequirePackage[xetex]{hyperref}
+  \RequirePackage{hyperref}
   \DeclareGraphicsExtensions{.pdf,.png,.jpg}
-\else
-  \ifpdf   % We're running pdfTeX in PDF mode
-    \RequirePackage[pdftex]{hyperref}
-    \DeclareGraphicsExtensions{.pdf,.png,.jpg}
-  \else    % We're not running pdfTeX, or running pdfTeX in DVI mode
-    \ifCAST@dvips
-      \RequirePackage[dvips]{hyperref}
-      \RequirePackage{psfrag}
-      \AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
-    \else
-      \RequirePackage[dvipdfm]{hyperref}
-    \fi
-    \DeclareGraphicsExtensions{.eps,.ps}
-  \fi
-\fi
 \hypersetup{CJKbookmarks,%
        bookmarksnumbered,%
               colorlinks,%
@@ -111,7 +89,7 @@
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \renewcommand{\floatpagefraction}{0.80}
 \bibliographystyle{plain}
-\newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
+\newcommand\CASTspace{\hspace{2\ccwd}}
 \def\CAST@getfileinfo#1 #2 #3\relax#4\relax{%
   \def\CASTfiledate{#1}%
   \def\CASTfileversion{#2}%

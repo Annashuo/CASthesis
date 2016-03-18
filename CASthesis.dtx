@@ -55,7 +55,7 @@
 %
 %<*driver>
 \documentclass{ltxdoc}
-\usepackage{ctex}
+\usepackage[UTF8]{ctex}
  \topmargin 1 true cm
  \oddsidemargin 2.5 true cm
  \evensidemargin 2.5 true cm
@@ -186,18 +186,6 @@
 %    \end{macrocode}
 %
 %
-% \changes{v0.1i}{2009/05/13}{加入~pdftex~选项}
-% 使用~dvips~还是~dvipdfm~来处理~DVI~文件。
-%    \begin{macrocode}
-%<*cls>
-\newif\ifCAST@dvips \CAST@dvipsfalse
-\DeclareOption{dvips}{\CAST@dvipstrue}
-\DeclareOption{dvipdfm}{\CAST@dvipsfalse}
-\DeclareOption{pdftex}{\CAST@dvipsfalse}
-%</cls>
-%    \end{macrocode}
-%
-%
 % 把没有定义的选项传递给底层的文档类
 %    \begin{macrocode}
 %<cls>\DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
@@ -213,7 +201,7 @@
 % 装入缺省的文档类
 % \changes{v0.1g}{2005/12/09}{使用~v0.7~以上版本的~ctex~宏包提供的~fntef~选项}
 %    \begin{macrocode}
-%<cls>\LoadClass[cs4size,a4paper,fancyhdr,fntef]{ctexbook}[2005/11/25]
+%<cls>\LoadClass[UTF8,zihao=-4,a4paper,fancyhdr]{ctexbook}[2005/11/25]
 %    \end{macrocode}
 %
 %
@@ -224,8 +212,6 @@
 % \changes{v0.2}{2011/04/06}{加入对~XeTeX~的支持}
 %    \begin{macrocode}
 %<*cls>
-%% check pdfTeX mode
-\RequirePackage{ifpdf,ifxetex}
 %% math packages
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm}
 %% graphics packages
@@ -233,24 +219,8 @@
 %% sort and compress citations
 \RequirePackage[sort&compress,numbers]{natbib}
 %% packages and settings depend on PDF mode
-\ifxetex
-  \RequirePackage[xetex]{hyperref}
+  \RequirePackage{hyperref}
   \DeclareGraphicsExtensions{.pdf,.png,.jpg}
-\else
-  \ifpdf   % We're running pdfTeX in PDF mode
-    \RequirePackage[pdftex]{hyperref}
-    \DeclareGraphicsExtensions{.pdf,.png,.jpg}
-  \else    % We're not running pdfTeX, or running pdfTeX in DVI mode
-    \ifCAST@dvips
-      \RequirePackage[dvips]{hyperref}
-      \RequirePackage{psfrag}
-      \AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
-    \else
-      \RequirePackage[dvipdfm]{hyperref}
-    \fi
-    \DeclareGraphicsExtensions{.eps,.ps}
-  \fi
-\fi
 %</cls>
 %    \end{macrocode}
 %
@@ -276,16 +246,6 @@
 \AtEndOfPackage{\makeatletter\input{CASthesis.cfg}\makeatother}
 %</cls>
 %    \end{macrocode}
-%
-% \changes{v0.2}{2011/04/06}{为~CASthesis.cfg~文件设置正确的编码信息}
-%    \begin{macrocode}
-%<*cfg>
-\ifxetex
-  \XeTeXinputencoding "GBK"
-\fi
-%</cfg>
-%    \end{macrocode}
-%
 %
 %
 %
@@ -349,7 +309,7 @@
 % 中文空格，用于标题中。
 %    \begin{macrocode}
 %<*cls>
-\newcommand\CASTspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
+\newcommand\CASTspace{\hspace{2\ccwd}}
 %</cls>
 %    \end{macrocode}
 % \end{macro}
@@ -1074,7 +1034,7 @@
 %% the section title format
 %%
 \def\CTEX@section@format{\bfseries\heiti\zihao{4}\centering}
-\def\CTEX@section@beforeskip{-3ex \@plus -1ex \@minus -.2ex}
+% \def\CTEX@section@beforeskip{-3ex \@plus -1ex \@minus -.2ex}
 \def\CTEX@section@afterskip{1.0ex \@plus .2ex}
 %</cfg>
 %    \end{macrocode}
@@ -1088,7 +1048,7 @@
 %%
 \def\CTEX@subsection@format{\bfseries\heiti\zihao{-4}}
 \def\CTEX@subsection@indent{2\ccwd}
-\def\CTEX@subsection@beforeskip{-2.5ex \@plus -1ex \@minus -.2ex}
+% \def\CTEX@subsection@beforeskip{-2.5ex \@plus -1ex \@minus -.2ex}
 \def\CTEX@subsection@afterskip{1.0ex \@plus .2ex}
 %</cfg>
 %    \end{macrocode}
@@ -1102,7 +1062,7 @@
 %%
 \def\CTEX@subsubsection@format{\bfseries\heiti\zihao{-4}}
 \def\CTEX@subsubsection@indent{2\ccwd}
-\def\CTEX@subsubsection@beforeskip{-2ex \@plus -1ex \@minus -.2ex}
+% \def\CTEX@subsubsection@beforeskip{-2ex \@plus -1ex \@minus -.2ex}
 \def\CTEX@subsubsection@afterskip{1.0ex \@plus .2ex}
 %</cfg>
 %    \end{macrocode}

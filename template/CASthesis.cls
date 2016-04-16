@@ -50,7 +50,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{CASthesis}
-  [2011/04/06 v0.2 CASthesis
+  [2016/04/16 v0.3 CASthesis
    document class]
 \newif\ifCAST@typeinfo \CAST@typeinfotrue
 \DeclareOption{notypeinfo}{\CAST@typeinfofalse}
@@ -89,7 +89,7 @@
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \renewcommand{\floatpagefraction}{0.80}
 \bibliographystyle{plain}
-\newcommand\CASTspace{\hspace{2\ccwd}}
+\newcommand\CASTspace{\hspace*{2\ccwd}}
 \def\CAST@getfileinfo#1 #2 #3\relax#4\relax{%
   \def\CASTfiledate{#1}%
   \def\CASTfileversion{#2}%

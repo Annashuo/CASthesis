@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright 2004-2006
+% Copyright 2004-2016
 % CTEX.ORG and any individual authors listed elsewhere in this file.
 %
 % This file is part of the CASthesis package project.
@@ -33,7 +33,7 @@
 %%   Right brace   \}     Tilde         \~}
 %%
 %
-% \CheckSum{908}
+% \CheckSum{845}
 %
 % \iffalse meta-comment
 %</!(cfg|fd)>
@@ -45,7 +45,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1995/12/01]
 %<cls>\ProvidesClass{CASthesis}
 %<cfg>\ProvidesFile{CASthesis.cfg}
-  [2011/04/06 v0.2 CASthesis
+  [2016/04/16 v0.3 CASthesis
 %<cls>   document class]
 %<cfg>   configuration file]
 %
@@ -309,7 +309,7 @@
 % 中文空格，用于标题中。
 %    \begin{macrocode}
 %<*cls>
-\newcommand\CASTspace{\hspace{2\ccwd}}
+\newcommand\CASTspace{\hspace*{2\ccwd}}
 %</cls>
 %    \end{macrocode}
 % \end{macro}
@@ -1014,15 +1014,19 @@
 %
 %
 % chapter~的缺省格式
+% \changes{v0.3}{2016/04/16}{使用 ctex v2.0 的接口}
 %    \begin{macrocode}
 %<*cfg>
 %%
 %% the chapter title format
 %%
-\def\CTEX@chapter@nameformat{\bfseries\heiti\zihao{-3}}
-\def\CTEX@chapter@titleformat{\bfseries\heiti\zihao{-3}}
-\def\CTEX@chapter@beforeskip{15\p@}
-\def\CTEX@chapter@afterskip{12\p@}
+\ctexset {
+  chapter = {
+    format = \bfseries\heiti\zihao{-3},
+    beforeskip = 15pt,
+    afterskip = 12pt,
+  },
+}
 %</cfg>
 %    \end{macrocode}
 %
@@ -1033,9 +1037,13 @@
 %%
 %% the section title format
 %%
-\def\CTEX@section@format{\bfseries\heiti\zihao{4}\centering}
-% \def\CTEX@section@beforeskip{-3ex \@plus -1ex \@minus -.2ex}
-\def\CTEX@section@afterskip{1.0ex \@plus .2ex}
+\ctexset {
+  section = {
+    format = \bfseries\heiti\zihao{4}\centering,
+    % beforeskip = -3ex \@plus -1ex \@minus -.2ex,
+    afterskip = 1.0ex \@plus .2ex,
+  },
+}
 %</cfg>
 %    \end{macrocode}
 %
@@ -1046,10 +1054,14 @@
 %%
 %% the subsection title format
 %%
-\def\CTEX@subsection@format{\bfseries\heiti\zihao{-4}}
-\def\CTEX@subsection@indent{2\ccwd}
-% \def\CTEX@subsection@beforeskip{-2.5ex \@plus -1ex \@minus -.2ex}
-\def\CTEX@subsection@afterskip{1.0ex \@plus .2ex}
+\ctexset {
+  subsection = {
+    format = \bfseries\heiti\zihao{-4},
+    indent = 2\ccwd,
+    % beforeskip = -2.5ex \@plus -1ex \@minus -.2ex,
+    afterskip = 1.0ex \@plus .2ex,
+  },
+}
 %</cfg>
 %    \end{macrocode}
 %
@@ -1060,10 +1072,14 @@
 %%
 %% the subsubsection title format
 %%
-\def\CTEX@subsubsection@format{\bfseries\heiti\zihao{-4}}
-\def\CTEX@subsubsection@indent{2\ccwd}
-% \def\CTEX@subsubsection@beforeskip{-2ex \@plus -1ex \@minus -.2ex}
-\def\CTEX@subsubsection@afterskip{1.0ex \@plus .2ex}
+\ctexset {
+  subsubsection = {
+    format = \bfseries\heiti\zihao{-4},
+    indent = 2\ccwd,
+    % beforeskip = -2ex \@plus -1ex \@minus -.2ex,
+    afterskip = 1.0ex \@plus .2ex,
+  },
+}
 %</cfg>
 %    \end{macrocode}
 %
